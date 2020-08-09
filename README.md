@@ -1,2 +1,4 @@
 # server
 Server Code for TravelX
+
+Data handling and obtainment is carried out via an implementation of Python Flask in AWS. Flask was utilized to make calls to the OpenWeatherMap OneCall API, which provides current and forecast data on precipitation, temperature, and weather conditions. This was used hand-in-hand with the Google Maps Places API, which provides unique location IDs, generates autocomplete suggestions based on search strings, and provides data on when establishments are open and closed. The populartimes Github repository (created by user m-wrzr), which harvests data on popular times and crowd density using the Google Maps Places API, was used to generate graphs of the expected crowd density on any given day at a particular location. Finally, all calculations are carried out using Python methods based on data from Li et. al. 2018 and The Lancet, as reported by Statista.
