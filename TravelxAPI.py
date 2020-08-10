@@ -127,7 +127,8 @@ def calcdata(inlat, inlon):
     scorefreq = 0
     filenametwo = str(lat) + "," + str(lon) + "_comments.txt"
     with open(filenametwo, 'r') as reader:
-        comment.append(reader.readline())
+        for i in reader.readlines():
+            comment.append(i.strip("\n"))
     filenameone = str(lat) + "," + str(lon) + ".txt"
     with open(filenameone, 'r') as readero:
         avgscore = float(readero.readline())
