@@ -68,19 +68,24 @@ def histogram(place_ide, iday):
 
 @app.route('/openhours/<place_ide>/<weekda>')
 def openhours(place_ide, weekda):
-    place_id = str(place_ide)
-    weekday = int(weekda)
-    weekday-=1
-    api_key = "AIzaSyBvOur9iaRBPKa7aJWgHZObOIwr1b1O7PM"
-    url = "https://maps.googleapis.com/maps/api/place/details/json?place_id=" + place_id + "&fields=name,opening_hours&key=" + api_key
-    response = requests.request("POST", url)
-    response = response.json()
-    opennow = response["result"]["opening_hours"]["open_now"]
-    texttodisplay = response["result"]["opening_hours"]["weekday_text"][weekday]
-    print(texttodisplay)
-    vals = { "opennow": opennow, "text": texttodisplay}
-    vals_son = json.dumps(vals)
-    return vals_son
+    try:
+        place_id = str(place_ide)
+        weekday = int(weekda)
+        weekday-=1
+        api_key = "AIzaSyBvOur9iaRBPKa7aJWgHZObOIwr1b1O7PM"
+        url = "https://maps.googleapis.com/maps/api/place/details/json?place_id=" + place_id + "&fields=name,opening_hours&key=" + api_key
+        response = requests.request("POST", url)
+        response = response.json()
+        opennow = response["result"]["opening_hours"]["open_now"]
+        texttodisplay = response["result"]["opening_hours"]["weekday_text"][weekday]
+        print(texttodisplay)
+        vals = { "opennow": opennow, "text": texttodisplay}
+        vals_son = json.dumps(vals)
+        return vals_son
+    except:
+        vals = { "opennow" : False, "text": "unknown"}
+        vals_son = json.dumps(vals)
+        return vals_son
 
 @app.route('/scoredisplay/<inlat>/<inlon>')
 def scoredisplay(inlat, inlon):
